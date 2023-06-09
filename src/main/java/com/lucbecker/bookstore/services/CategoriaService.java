@@ -1,6 +1,7 @@
 package com.lucbecker.bookstore.services;
 
 import com.lucbecker.bookstore.domain.Categoria;
+import com.lucbecker.bookstore.dto.CategoriaDTO;
 import com.lucbecker.bookstore.repositories.CategoriaRepository;
 import com.lucbecker.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,15 @@ public class CategoriaService {
 
     public Categoria create(Categoria obj){
         obj.setId(null);
+        return repository.save(obj);
+    }
+
+    public Categoria update(Integer id, CategoriaDTO objDTO) {
+        Categoria obj = findById(id);
+        if (objDTO.getNome() != null)
+            obj.setNome(objDTO.getNome());
+        if(objDTO.getDescricao() != null)
+            obj.setDescricao(objDTO.getDescricao());
         return repository.save(obj);
     }
 }
