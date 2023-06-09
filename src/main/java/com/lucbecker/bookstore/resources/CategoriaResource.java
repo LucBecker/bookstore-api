@@ -1,6 +1,7 @@
 package com.lucbecker.bookstore.resources;
 
 import com.lucbecker.bookstore.domain.Categoria;
+import com.lucbecker.bookstore.dto.CategoriaDTO;
 import com.lucbecker.bookstore.repositories.CategoriaRepository;
 import com.lucbecker.bookstore.services.CategoriaService;
 import org.apache.coyote.Response;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -22,5 +26,12 @@ public class CategoriaResource {
     public ResponseEntity<Categoria> findById(@PathVariable Integer id){
         Categoria obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
+        List<Categoria> list = service.findAll();
+        List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
 }
