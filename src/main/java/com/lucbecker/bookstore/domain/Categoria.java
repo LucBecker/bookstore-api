@@ -1,5 +1,7 @@
 package com.lucbecker.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class Categoria implements Serializable {
     private String nome;
     private String descricao;
 
+    @JsonIgnoreProperties("categoria")
     @OneToMany(mappedBy = "categoria")
     private List<Livro> livros = new ArrayList<>();
 
