@@ -1,10 +1,8 @@
 package com.lucbecker.bookstore.resources;
 
-import com.lucbecker.bookstore.domain.Categoria;
-import com.lucbecker.bookstore.dto.CategoriaDTO;
-import com.lucbecker.bookstore.repositories.CategoriaRepository;
-import com.lucbecker.bookstore.services.CategoriaService;
-import org.apache.coyote.Response;
+import com.lucbecker.bookstore.domain.Category;
+import com.lucbecker.bookstore.dto.CategoryDTO;
+import com.lucbecker.bookstore.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,35 +14,35 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
-public class CategoriaResource {
+public class CategoryResource {
 
     @Autowired
-    private CategoriaService service;
+    private CategoryService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Categoria> findById(@PathVariable Integer id){
-        Categoria obj = service.findById(id);
+    public ResponseEntity<Category> findById(@PathVariable Integer id){
+        Category obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriaDTO>> findAll(){
-        List<Categoria> list = service.findAll();
-        List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+    public ResponseEntity<List<CategoryDTO>> findAll(){
+        List<Category> list = service.findAll();
+        List<CategoryDTO> listDTO = list.stream().map(obj -> new CategoryDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> create(@RequestBody Categoria obj){
+    public ResponseEntity<Category> create(@RequestBody Category obj){
         obj = service.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO objDTO){
-        Categoria newObj = service.update(id, objDTO);
-        return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+    public ResponseEntity<CategoryDTO> update(@PathVariable Integer id, @RequestBody CategoryDTO objDTO){
+        Category newObj = service.update(id, objDTO);
+        return ResponseEntity.ok().body(new CategoryDTO(newObj));
     }
 
     @DeleteMapping(value = "/{id}")

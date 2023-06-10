@@ -1,7 +1,7 @@
 package com.lucbecker.bookstore.services;
 
-import com.lucbecker.bookstore.domain.Categoria;
-import com.lucbecker.bookstore.domain.Livro;
+import com.lucbecker.bookstore.domain.Category;
+import com.lucbecker.bookstore.domain.Book;
 import com.lucbecker.bookstore.repositories.CategoriaRepository;
 import com.lucbecker.bookstore.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +18,15 @@ public class DBService {
 
     public void instanciaBaseDeDados() {
 
-        Categoria cat1 = new Categoria(null, "Informatica", "Livros de TI");
-        Categoria cat2 = new Categoria(null, "Ficção Científica", "Ficção Científica");
-        Categoria cat3 = new Categoria(null, "Biografias", "Livros de Biografias");
+        Category cat1 = new Category(null, "Informatica", "Livros de TI");
+        Category cat2 = new Category(null, "Ficção Científica", "Ficção Científica");
+        Category cat3 = new Category(null, "Biografias", "Livros de Biografias");
 
-        Livro l1 = new Livro(null, "Clean code", "Robert Martin", "Lorem ipsum", cat1);
-        Livro l2 = new Livro(null, "Engenharia de Software", "Louis V. Gerstner", "Lorem ipsum", cat1);
-        Livro l3 = new Livro(null, "The Time Machine", "H.G. Wells", "Lorem ipsum", cat2);
-        Livro l4 = new Livro(null, "The War of the Worlds", "H.G. Wells", "Lorem ipsum", cat2);
-        Livro l5 = new Livro(null, "I, Robot", "Isaac Asimov", "Lorem ipsum", cat2);
+        Book l1 = new Book(null, "Clean code", "Robert Martin", "Lorem ipsum", cat1);
+        Book l2 = new Book(null, "Engenharia de Software", "Louis V. Gerstner", "Lorem ipsum", cat1);
+        Book l3 = new Book(null, "The Time Machine", "H.G. Wells", "Lorem ipsum", cat2);
+        Book l4 = new Book(null, "The War of the Worlds", "H.G. Wells", "Lorem ipsum", cat2);
+        Book l5 = new Book(null, "I, Robot", "Isaac Asimov", "Lorem ipsum", cat2);
 
         cat1.getLivros().addAll(Arrays.asList(l1, l2));
 
