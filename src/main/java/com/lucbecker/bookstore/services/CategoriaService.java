@@ -5,6 +5,7 @@ import com.lucbecker.bookstore.dto.CategoriaDTO;
 import com.lucbecker.bookstore.repositories.CategoriaRepository;
 import com.lucbecker.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,17 +17,17 @@ public class CategoriaService {
     @Autowired
     CategoriaRepository repository;
 
-    public Categoria findById(Integer id){
+    public Categoria findById(Integer id) {
         Optional<Categoria> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
     }
 
-    public List<Categoria> findAll(){
+    public List<Categoria> findAll() {
         return repository.findAll();
     }
 
-    public Categoria create(Categoria obj){
+    public Categoria create(Categoria obj) {
         obj.setId(null);
         return repository.save(obj);
     }
@@ -35,13 +36,18 @@ public class CategoriaService {
         Categoria obj = findById(id);
         if (objDTO.getNome() != null)
             obj.setNome(objDTO.getNome());
-        if(objDTO.getDescricao() != null)
+        if (objDTO.getDescricao() != null)
             obj.setDescricao(objDTO.getDescricao());
         return repository.save(obj);
     }
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new com.lucbecker.bookstore.services.exceptions.DataIntegrityViolationException(
+                    "Categoria não pode ser deletada! Possui livros associados");
+        }
     }
 }
