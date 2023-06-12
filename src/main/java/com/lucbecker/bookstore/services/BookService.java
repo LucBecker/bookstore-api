@@ -5,6 +5,7 @@ import com.lucbecker.bookstore.domain.Category;
 import com.lucbecker.bookstore.repositories.BookRepository;
 import com.lucbecker.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,5 +53,10 @@ public class BookService {
         Category cat = categoryService.findById(id_cat);
         obj.setCategory(cat);
         return repository.save(obj);
+    }
+
+    public void delete(Integer id) {
+        Book obj = findById(id);
+        repository.delete(obj);
     }
 }
