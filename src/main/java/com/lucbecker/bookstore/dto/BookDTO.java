@@ -1,5 +1,6 @@
 package com.lucbecker.bookstore.dto;
 
+import com.lucbecker.bookstore.domain.Book;
 import com.lucbecker.bookstore.domain.Category;
 
 import java.io.Serializable;
@@ -9,17 +10,13 @@ public class BookDTO implements Serializable {
 
     private Integer id;
     private String title;
-    private String authorName;
-    private String text;
 
     public BookDTO() {
     }
 
-    public BookDTO(Integer id, String title, String authorName, String text) {
-        this.id = id;
-        this.title = title;
-        this.authorName = authorName;
-        this.text = text;
+    public BookDTO(Book obj) {
+        this.id = obj.getId();
+        this.title = obj.getTitle();
     }
 
     public Integer getId() {
@@ -36,21 +33,5 @@ public class BookDTO implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 }
