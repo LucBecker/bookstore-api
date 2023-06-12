@@ -1,8 +1,9 @@
 package com.lucbecker.bookstore.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,11 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "NAME field is required")
+    @Length(min = 3, max = 100, message = "The Name field must be between 3 and 100 characters long")
     private String name;
+    @NotEmpty(message = "DESCRIPTION field is required")
+    @Length(min = 3, max = 200, message = "The Description field must be between 3 and 200 characters long")
     private String description;
 
     @OneToMany(mappedBy = "category")
