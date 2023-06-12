@@ -2,8 +2,8 @@ package com.lucbecker.bookstore.services;
 
 import com.lucbecker.bookstore.domain.Category;
 import com.lucbecker.bookstore.domain.Book;
-import com.lucbecker.bookstore.repositories.CategoriaRepository;
-import com.lucbecker.bookstore.repositories.LivroRepository;
+import com.lucbecker.bookstore.repositories.CategoryRepository;
+import com.lucbecker.bookstore.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ import java.util.Arrays;
 @Service
 public class DBService {
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private CategoryRepository categoryRepository;
     @Autowired
-    private LivroRepository livroRepository;
+    private BookRepository bookRepository;
 
     public void instanciaBaseDeDados() {
 
@@ -28,9 +28,9 @@ public class DBService {
         Book l4 = new Book(null, "The War of the Worlds", "H.G. Wells", "Lorem ipsum", cat2);
         Book l5 = new Book(null, "I, Robot", "Isaac Asimov", "Lorem ipsum", cat2);
 
-        cat1.getLivros().addAll(Arrays.asList(l1, l2));
+        cat1.getBooks().addAll(Arrays.asList(l1, l2));
 
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
-        livroRepository.saveAll(Arrays.asList(l1, l2, l3, l4, l5));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        bookRepository.saveAll(Arrays.asList(l1, l2, l3, l4, l5));
     }
 }

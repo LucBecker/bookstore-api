@@ -1,4 +1,4 @@
-package com.lucbecker.bookstore.resources.exceptions;
+package com.lucbecker.bookstore.controller.exceptions;
 
 public class StandardError {
 

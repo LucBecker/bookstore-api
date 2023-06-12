@@ -1,4 +1,4 @@
-package com.lucbecker.bookstore.resources.exceptions;
+package com.lucbecker.bookstore.controller.exceptions;
 
 import com.lucbecker.bookstore.services.exceptions.DataIntegrityViolationException;
 import com.lucbecker.bookstore.services.exceptions.ObjectNotFoundException;

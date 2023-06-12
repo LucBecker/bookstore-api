@@ -56,11 +56,11 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public List<Book> getLivros() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setLivros(List<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 

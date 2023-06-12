@@ -1,5 +1,7 @@
 package com.lucbecker.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,19 +15,19 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
-    private String authorName;
+    private String author;
     private String text;
     @ManyToOne
-    @JoinColumn(name = "categoria_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Book() {
     }
 
-    public Book(Integer id, String title, String authorName, String text, Category category) {
+    public Book(Integer id, String title, String author, String text, Category category) {
         this.id = id;
         this.title = title;
-        this.authorName = authorName;
+        this.author = author;
         this.text = text;
         this.category = category;
     }
@@ -46,12 +48,12 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getText() {
@@ -62,11 +64,11 @@ public class Book implements Serializable {
         this.text = text;
     }
 
-    public Category getCategoria() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategoria(Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

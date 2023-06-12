@@ -1,4 +1,4 @@
-package com.lucbecker.bookstore.resources;
+package com.lucbecker.bookstore.controller;
 
 import com.lucbecker.bookstore.domain.Category;
 import com.lucbecker.bookstore.dto.CategoryDTO;
@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoryResource {
+@RequestMapping(value = "/categories")
+public class CategoryController {
 
     @Autowired
     private CategoryService service;

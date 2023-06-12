@@ -2,7 +2,7 @@ package com.lucbecker.bookstore.services;
 
 import com.lucbecker.bookstore.domain.Category;
 import com.lucbecker.bookstore.dto.CategoryDTO;
-import com.lucbecker.bookstore.repositories.CategoriaRepository;
+import com.lucbecker.bookstore.repositories.CategoryRepository;
 import com.lucbecker.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class CategoryService {
 
     @Autowired
-    CategoriaRepository repository;
+    CategoryRepository repository;
 
     public Category findById(Integer id) {
         Optional<Category> obj = repository.findById(id);
