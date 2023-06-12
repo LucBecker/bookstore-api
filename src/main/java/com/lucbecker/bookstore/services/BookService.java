@@ -1,6 +1,7 @@
 package com.lucbecker.bookstore.services;
 
 import com.lucbecker.bookstore.domain.Book;
+import com.lucbecker.bookstore.domain.Category;
 import com.lucbecker.bookstore.repositories.BookRepository;
 import com.lucbecker.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,12 @@ public class BookService {
         if(newObj.getText() != null){
             newObj.setText(obj.getText());
         }
+    }
+
+    public Book create(Integer id_cat, Book obj) {
+        obj.setId(null);
+        Category cat = categoryService.findById(id_cat);
+        obj.setCategory(cat);
+        return repository.save(obj);
     }
 }
